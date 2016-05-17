@@ -13,8 +13,11 @@ typedef struct labirinto{
   Posicao **p;
 }Labirinto;
 
+typedef struct robo{
+  int x, y;
+}elem_t;
 
-void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l);
+void moverRobo(Labirinto *l, Fila *f_l);
 
 
 
