@@ -36,8 +36,7 @@ void main(){
         push(&pilha, num);
       break;
       case 4:
-        retornoPop = pop(&pilha);
-        printf("%d", retornoPop->num);
+        pop(&pilha);
         free(retornoPop);
       break;
       default:

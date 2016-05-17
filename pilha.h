@@ -5,7 +5,10 @@
 #ifndef PILHA_H
 #define PILHA_H
 
-typedef char elem_t;
+typedef struct robo{
+  int x;
+  int y;
+}Robo;
 
 typedef struct no{
   elem_t info;
@@ -13,6 +16,7 @@ typedef struct no{
 } No_Pilha;
 
 typedef No_Pilha Pilha;
+typedef Robo elem_t;
 
 /* Inicializa uma Pilha */
 void inicPilha(Pilha *p_l);
