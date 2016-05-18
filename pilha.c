@@ -19,7 +19,7 @@ int PilhaVazia(Pilha *p_l){
 }
 
 /* Insere um elemento na Pilha */
-void push(Pilha *p_l, elem_t e){
+void push(Pilha *p_l, elem_t_pilha e){
 	No_Pilha *novo;
 	novo = malloc(sizeof(No_Pilha));
 	novo->info = e;
@@ -30,12 +30,10 @@ void push(Pilha *p_l, elem_t e){
 
 /* Remove um elemento da Pilha.
    Retorna 0 caso a Pilha esteja vazia */
-elem_t pop(Pilha *p_l){
+elem_t_pilha pop(Pilha *p_l){
 	No_Pilha *topo;
-	elem_t ret;
+	elem_t_pilha ret;
 	// o usuario da pilha deveria testar se a pilha nao esta vazia antes da chamada desta funcao
-	if (PilhaVazia(p_l))
-		return '\0';
 	topo = p_l->prox;
 	p_l->prox = topo->prox;
 	ret = topo->info;
@@ -44,30 +42,6 @@ elem_t pop(Pilha *p_l){
 }
 
 /* Retorna o elemento do topo da pilha */
-elem_t elemTopo(Pilha *p_l){
-	if (PilhaVazia(p_l))
-		return '\0';
+elem_t_pilha elemTopo(Pilha *p_l){
 	return p_l->prox->info;
-}
-
-
-
-/* Remove todos os numeros da Pilha */
-void libera(Pilha *p_l){
-	No_Pilha *aux;
-	aux = p_l->prox;
-	while(aux != NULL){
-		p_l->prox = aux->prox;
-		free(aux);
-		aux = p_l->prox;
-	}
-}
-
-/* Exibe o conteudo da Pilha */
-void exibe(Pilha *p_l){
-	p_l = p_l->prox;
-	while(p_l != NULL){
-		printf("%c ", p_l->info);
-		p_l = p_l->prox;
-	}
 }

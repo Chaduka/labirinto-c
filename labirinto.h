@@ -1,7 +1,7 @@
 #ifndef LABIRINTO_H
 #define LABIRINTO_H
 
-#include "lista.h"
+#include "fila.h"
 #include "pilha.h"
 
 typedef struct posicao{
@@ -13,13 +13,9 @@ typedef struct labirinto{
   Posicao **p;
 }Labirinto;
 
-typedef struct robo{
-  int x, y;
-}elem_t;
+void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l);
 
-void moverRobo(Labirinto *l, Fila *f_l);
-
-
+elem_t_pilha inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna);
 
 
 #endif
