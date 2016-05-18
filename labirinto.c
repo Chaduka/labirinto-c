@@ -9,7 +9,7 @@
   - DEVEMOS INICIARLIZAR A PILHA ACHANDO A ORIGEM
   - FUNC TOTAL PREMIOS
 */
-elem_t_pilha inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna){
+void inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna){
   int i, j, flag = 0;
   elem_t_pilha origem;
 
@@ -17,10 +17,10 @@ elem_t_pilha inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna){
     for(j = 0 ; j < coluna && flag != 1 ; j++){
       if(l->p[i][j].tipo == 'o'){
         flag = 1;
+        l->p[i][j].visitado = 1; //Visitado
         origem.x = i;
         origem.y = j;
         push(p_l, origem);
-      return origem;
       }
     }
   }
@@ -90,4 +90,27 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
       pop(p_l); // Implementar aqui
     }
   }while(!PilhaVazia(p_l));
+}
+
+
+void verPremios(Labirinto *l, Fila *f_l, int linhas, int colunas){
+  elem_t_fila premio;
+  int contador = 0;
+
+  //Imprimindo as coordenadas dos premios
+  while(!filaVazia(f_l)){
+    premio = removeFila(p_l);
+    printf("(%d,%d) ", premio.x, premio.y);
+    contador++;
+  }
+  printf("Premios encontrados: %d", contador);
+
+  //Total de premios
+  contador = 0;
+  for(i = 0 ; i < linhas ; i++){
+    for (j = 0 ; j < colunas ; j++){
+      if(l->p[i][j].info == 'p') contador;
+    }
+  }
+  printf("Total de premios no labirinto: %d", contador);
 }
