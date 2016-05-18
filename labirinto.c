@@ -20,7 +20,7 @@ elem_t_pilha inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna){
         origem.x = i;
         origem.y = j;
         push(p_l, origem);
-      return origem;
+        return origem;
       }
     }
   }
