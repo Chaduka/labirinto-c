@@ -11,7 +11,7 @@ void inicPilha(Pilha *p_l){
 	p_l->prox = NULL;
 }
 
-/* Verifica se a Pilha está vazia ou nao */
+/* Verifica se a Pilha est� vazia ou nao */
 int PilhaVazia(Pilha *p_l){
 	if (p_l->prox == NULL)
 		return 1;
@@ -33,7 +33,6 @@ void push(Pilha *p_l, elem_t_pilha e){
 elem_t_pilha pop(Pilha *p_l){
 	No_Pilha *topo;
 	elem_t_pilha ret;
-	// o usuario da pilha deveria testar se a pilha nao esta vazia antes da chamada desta funcao
 	topo = p_l->prox;
 	p_l->prox = topo->prox;
 	ret = topo->info;

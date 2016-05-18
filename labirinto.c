@@ -4,19 +4,15 @@
 #include "labirinto.h"
 
 
-/*
-  LEMBRETES:
-  - DEVEMOS INICIARLIZAR A PILHA ACHANDO A ORIGEM
-  - FUNC TOTAL PREMIOS
-*/
+
 void inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna){
   int i, j, flag = 0;
+  char aux;
   elem_t_pilha origem;
 
-  for(i = 0 ; i < linha && flag != 1 ; i++){
-    for(j = 0 ; j < coluna && flag != 1 ; j++){
+  for(i = 0 ; i < linha ; i++){
+    for(j = 0 ; j < coluna ; j++){
       if(l->p[i][j].tipo == 'o'){
-        flag = 1;
         l->p[i][j].visitado = 1; //Visitado
         origem.x = i;
         origem.y = j;
@@ -32,74 +28,82 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
   elem_t_pilha retorno;
   elem_t_fila premio;
   int num_premios = 0;
+  int contadoraux = 0;
+
 
   do{
     /*  ACHANDO OS PREMIOS NO LABIRINTO  */
     retorno = elemTopo(p_l); //Pegando elemento do topo da pilha - atual.
+    printf("%d %d\n", retorno.x, retorno.y);
     /* MOVER_SE*/
     //Esquerda
-    if(((l->p[retorno.x-1][retorno.y].tipo == ' ') || (l->p[retorno.x-1][retorno.y].tipo == 'p'))  && (l->p[retorno.x-1][retorno.y].visitado == 0)){
-      retorno.x -= 1;
-      if(l->p[retorno.x-1][retorno.y].tipo == 'p'){
-        premio.x = retorno.x-1;
+    if(((l->p[retorno.x][retorno.y-1].tipo == ' ') ||  (l->p[retorno.x][retorno.y-1].tipo == 'p'))&& (l->p[retorno.x][retorno.y-1].visitado == 0)){
+      retorno.y -= 1  ;
+      if(l->p[retorno.x][retorno.y].tipo == 'p'){
+        /*premio.x = retorno.x;
         premio.y = retorno.y;
-        insereFila(f_l, premio);
+        insereFila(f_l, premio);*/
+        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
         num_premios++;
       }
-      l->p[retorno.x-1][retorno.y].visitado == 1;
+      l->p[retorno.x][retorno.y].visitado = 1;
       push(p_l, retorno);
     }
     //Direita
-    if (((l->p[retorno.x+1][retorno.y].tipo == ' ') ||  (l->p[retorno.x+1][retorno.y].tipo == 'p'))&& (l->p[retorno.x-1][retorno.y].visitado == 0)){
-      retorno.x += 1;
-      if (l->p[retorno.x+1][retorno.y].tipo == 'p'){
-        premio.x = retorno.x+1;
+    else if (((l->p[retorno.x][retorno.y+1].tipo == ' ') ||  (l->p[retorno.x][retorno.y+1].tipo == 'p'))&& (l->p[retorno.x][retorno.y+1].visitado == 0)){
+      retorno.y += 1;
+      if (l->p[retorno.x][retorno.y].tipo == 'p'){
+        /*premio.x = retorno.x;
         premio.y = retorno.y;
-        insereFila(f_l,premio);
+        insereFila(f_l,premio);*/
+        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
         num_premios++;
       }
-      l->p[retorno.x-1][retorno.y].visitado == 1;
+      l->p[retorno.x][retorno.y].visitado = 1;
       push(p_l,retorno);
     }
     //Cima
-    if (((l->p[retorno.x][retorno.y+1].tipo == ' ') || (l->p[retorno.x][retorno.y+1].tipo == 'p')) && (l->p[retorno.x-1][retorno.y].visitado == 0)){
-      retorno.y += 1;
-      if (l->p[retorno.x][retorno.y+1].tipo == 'p'){
-        premio.x = retorno.x;
-        premio.y = retorno.y+1;
-        insereFila(f_l, premio);
+    else if (((l->p[retorno.x-1][retorno.y].tipo == ' ') || (l->p[retorno.x-1][retorno.y].tipo == 'p')) && (l->p[retorno.x-1][retorno.y].visitado == 0)){
+      retorno.x -= 1;
+      if (l->p[retorno.x][retorno.y].tipo == 'p'){
+        /*premio.x = retorno.x;
+        premio.y = retorno.y;
+        insereFila(f_l, premio);*/
+        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
         num_premios++;
       }
-      l->p[retorno.x-1][retorno.y].visitado == 1;
+      l->p[retorno.x][retorno.y].visitado = 1;
       push(p_l,retorno);
     }
     //Baixo
-    if (((l->p[retorno.x][retorno.y-1].tipo == ' ') || (l->p[retorno.x][retorno.y-1].tipo == 'p')) && (l->p[retorno.x-1][retorno.y].visitado == 0)){
-      retorno.y -= 1;
-      if (l->p[retorno.x][retorno.y-1].tipo == 'p'){
-        premio.x = retorno.x;
-        premio.y = retorno.y-1;
-        insereFila(f_l, premio);
+    else if (((l->p[retorno.x+1][retorno.y].tipo == ' ') || (l->p[retorno.x+1][retorno.y].tipo == 'p')) && (l->p[retorno.x+1][retorno.y].visitado == 0)){
+      retorno.x += 1;
+      if (l->p[retorno.x][retorno.y].tipo == 'p'){
+        /*premio.x = retorno.x;
+        premio.y = retorno.y;
+        insereFila(f_l, premio);*/
+        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
         num_premios++;
       }
-      l->p[retorno.x-1][retorno.y].visitado == 1;
+      l->p[retorno.x][retorno.y].visitado = 1;
       push(p_l, retorno);
     }
     //Nenhum lugar
     else{
       pop(p_l); // Implementar aqui
     }
+    contadoraux++;
   }while(!PilhaVazia(p_l));
 }
 
 
 void verPremios(Labirinto *l, Fila *f_l, int linhas, int colunas){
   elem_t_fila premio;
-  int contador = 0;
+  int i , j, contador = 0;
 
   //Imprimindo as coordenadas dos premios
   while(!filaVazia(f_l)){
-    premio = removeFila(p_l);
+    premio = removeFila(f_l);
     printf("(%d,%d) ", premio.x, premio.y);
     contador++;
   }
@@ -109,7 +113,7 @@ void verPremios(Labirinto *l, Fila *f_l, int linhas, int colunas){
   contador = 0;
   for(i = 0 ; i < linhas ; i++){
     for (j = 0 ; j < colunas ; j++){
-      if(l->p[i][j].info == 'p') contador;
+      if(l->p[i][j].tipo == 'p') contador++;
     }
   }
   printf("Total de premios no labirinto: %d", contador);

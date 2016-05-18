@@ -15,7 +15,9 @@ typedef struct labirinto{
 
 void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l);
 
-elem_t_pilha inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna);
+void inicLabirinto(Labirinto *l, Pilha *p_l, int linha, int coluna);
+
+void verPremios(Labirinto *l, Fila *f_l, int linhas, int colunas);
 
 
 #endif
