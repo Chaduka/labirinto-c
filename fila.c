@@ -2,19 +2,18 @@
  * Implementacao de Pilha
  */
 
-#include"fila.h"
+#include "fila.h"
 #include<stdio.h>
 #include<stdlib.h>
 
 /* Inicializa uma Pilha */
-void inicFila(Fila *p_l){
-  f_l->tamanho = 0;
-  f_l->fila = NULL;
+void inicFila(Fila *f_l){
+  f_l->prox = NULL;
 }
 
 /* Verifica se a Pilha est� vazia ou nao */
 int FilaVazia(Fila *f_l){
-	if (f_l->tamanho == 0)
+  if (f_l->prox == NULL)
 		return 1;
 	return 0;
 }
@@ -24,17 +23,16 @@ int FilaVazia(Fila *f_l){
   JA FOI IMPLEMENTADO, VERIFIQUE A LOGICA E TESTE
 */
 /* Insere um elemento na Pilha */
-void push(Fila *f_l, elem_t_fila e){
-	No_Fila *novo = malloc(sizeof(No_Fila));
+void insereFila(Fila *f_l, elem_t_fila e){
+	No_Fila *novo = malloc(sizeof(Fila));
   No_Fila *aux;
 	novo->info = e;
 	novo->prox = NULL;
 
   if(FilaVazia(f_l))
-    f_l->fila = novo;
-    f_l->tamanho++;
+    f_l->prox = novo;
   else{
-    aux = f_l->fila;
+    aux = f_l->prox;
     while(aux->prox != NULL){
       aux = aux->prox;
     }
@@ -45,11 +43,11 @@ void push(Fila *f_l, elem_t_fila e){
 
 /* Remove um elemento da Fila.
    Retorna 0 caso a Fila esteja vazia */
-elem_t_fila pop(Fila *f_l){
-	No_Pilha *topo;
-	elem_t_pilha ret;
-	topo = p_l->prox;
-	p_l->prox = topo->prox;
+elem_t_fila removeFila(Fila *f_l){
+	Fila *topo;
+	elem_t_fila ret;
+	topo = f_l->prox;
+	f_l->prox = topo->prox;
 	ret = topo->info;
 	free (topo);
 	return ret;

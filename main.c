@@ -28,11 +28,7 @@ int main(){
   */
   fscanf(fp,"%s %d %d", robo, &height, &width);
   fscanf(fp, "%c", &beni);
-  //fscanf(fp,"%s %d %d %c", robo, &height, &width, &beni);
-  printf("height: %d widgth: %d", height, width);
-
   char lab[height][width];
-
   /*
     CONSTRUINDO O LABIRINTO DE CHAR
   */
@@ -71,23 +67,10 @@ int main(){
       printf("%c ", l->p[i][j].tipo);
     printf("\n");
   }
-
-  do{
-    scanf("%d", &opt);
-    switch(opt){
-      case 1:
-        inicLabirinto(l, &p, height, width);
-      break;
-      case 2:
-        moverRobo(l, &p, &l);
-        printf("PASSOU 2");
-      break;
-      case 3:
-        verPremios(l, &f, height, width);
-        printf("PASSOU 3");
-      break;
-    }
-  }while(opt);
+  printf("\n");
+  inicLabirinto(l, &p, height, width);
+  moverRobo(l, &p, &f);
+  verPremios(l, &f, height, width);
 
   fclose(fp);
   return 0;

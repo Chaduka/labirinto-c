@@ -28,22 +28,18 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
   elem_t_pilha retorno;
   elem_t_fila premio;
   int num_premios = 0;
-  int contadoraux = 0;
-
 
   do{
     /*  ACHANDO OS PREMIOS NO LABIRINTO  */
     retorno = elemTopo(p_l); //Pegando elemento do topo da pilha - atual.
-    printf("%d %d\n", retorno.x, retorno.y);
     /* MOVER_SE*/
     //Esquerda
     if(((l->p[retorno.x][retorno.y-1].tipo == ' ') ||  (l->p[retorno.x][retorno.y-1].tipo == 'p'))&& (l->p[retorno.x][retorno.y-1].visitado == 0)){
       retorno.y -= 1  ;
       if(l->p[retorno.x][retorno.y].tipo == 'p'){
-        /*premio.x = retorno.x;
+        premio.x = retorno.x;
         premio.y = retorno.y;
-        insereFila(f_l, premio);*/
-        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
+        insereFila(f_l, premio);
         num_premios++;
       }
       l->p[retorno.x][retorno.y].visitado = 1;
@@ -53,10 +49,9 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
     else if (((l->p[retorno.x][retorno.y+1].tipo == ' ') ||  (l->p[retorno.x][retorno.y+1].tipo == 'p'))&& (l->p[retorno.x][retorno.y+1].visitado == 0)){
       retorno.y += 1;
       if (l->p[retorno.x][retorno.y].tipo == 'p'){
-        /*premio.x = retorno.x;
+        premio.x = retorno.x;
         premio.y = retorno.y;
-        insereFila(f_l,premio);*/
-        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
+        insereFila(f_l,premio);
         num_premios++;
       }
       l->p[retorno.x][retorno.y].visitado = 1;
@@ -66,10 +61,9 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
     else if (((l->p[retorno.x-1][retorno.y].tipo == ' ') || (l->p[retorno.x-1][retorno.y].tipo == 'p')) && (l->p[retorno.x-1][retorno.y].visitado == 0)){
       retorno.x -= 1;
       if (l->p[retorno.x][retorno.y].tipo == 'p'){
-        /*premio.x = retorno.x;
+        premio.x = retorno.x;
         premio.y = retorno.y;
-        insereFila(f_l, premio);*/
-        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
+        insereFila(f_l, premio);
         num_premios++;
       }
       l->p[retorno.x][retorno.y].visitado = 1;
@@ -79,10 +73,9 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
     else if (((l->p[retorno.x+1][retorno.y].tipo == ' ') || (l->p[retorno.x+1][retorno.y].tipo == 'p')) && (l->p[retorno.x+1][retorno.y].visitado == 0)){
       retorno.x += 1;
       if (l->p[retorno.x][retorno.y].tipo == 'p'){
-        /*premio.x = retorno.x;
+        premio.x = retorno.x;
         premio.y = retorno.y;
-        insereFila(f_l, premio);*/
-        printf("Premio encontrado:%d %d", retorno.x, retorno.y);
+        insereFila(f_l, premio);
         num_premios++;
       }
       l->p[retorno.x][retorno.y].visitado = 1;
@@ -90,9 +83,8 @@ void moverRobo(Labirinto *l, Pilha *p_l, Fila *f_l){
     }
     //Nenhum lugar
     else{
-      pop(p_l); // Implementar aqui
+      pop(p_l);
     }
-    contadoraux++;
   }while(!PilhaVazia(p_l));
 }
 
@@ -102,12 +94,12 @@ void verPremios(Labirinto *l, Fila *f_l, int linhas, int colunas){
   int i , j, contador = 0;
 
   //Imprimindo as coordenadas dos premios
-  while(!filaVazia(f_l)){
+  while(!FilaVazia(f_l)){
     premio = removeFila(f_l);
     printf("(%d,%d) ", premio.x, premio.y);
     contador++;
   }
-  printf("Premios encontrados: %d", contador);
+  printf("\nPremios encontrados: %d", contador);
 
   //Total de premios
   contador = 0;
@@ -116,5 +108,5 @@ void verPremios(Labirinto *l, Fila *f_l, int linhas, int colunas){
       if(l->p[i][j].tipo == 'p') contador++;
     }
   }
-  printf("Total de premios no labirinto: %d", contador);
+  printf("\nTotal de premios no labirinto: %d\n", contador);
 }
